@@ -40,20 +40,20 @@ export default function Menu() {
 }
 
 const Footer = styled.footer`
-    height: 70px;
-    padding: 0 36px;
-    background-color: #FFFFFF;
-    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.15);
-
     display: flex;
     align-items: center;
     justify-content: space-between;
-
+    height: 70px;
+    padding: 0 36px;
     position: fixed;
     bottom: 0;
     right: 0;
     left: 0;
     z-index: 10;
+
+    background-color: #FFFFFF;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.15);
+
 
     p {
         font-size: 18px;
@@ -63,10 +63,8 @@ const Footer = styled.footer`
 const BarraProgressao = styled.div`
     width: 91px;
     height: 91px;
-
     position: absolute;
     bottom: 10px;
     right: calc((100% - 91px) / 2);
-
     cursor: pointer;
 `

@@ -71,34 +71,31 @@ export default function Login() {
 }
 
 const Logar = styled.div`
+    height: 100%;
+    width: 100%;
+    background-color: #FFFFFF;
     display: flex;
     flex-direction: column;
     align-items: center;
     overflow-y: auto;
     position: absolute;
-    height: 100%;
-    width: 100%;
-    background-color: #FFFFFF;
 
     img {
-        width: 155px;
         margin-top: 69px;
+        width: 155px;
     }
 
-
     form {
-        width: 79%;
         margin-top: 31px;
+        width: 79%;
     }
 
     button {
-        display: flex;
-        align-items: center;
-        justify-content: center;
         width: 100%;
         height: 46px;
-
-        border: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;border: none;
         border-radius: 5px;
         background-color: var(--theme--color);
 
@@ -111,24 +108,23 @@ const Logar = styled.div`
     }
     
     p {
-        margin-top: 16px;
         font-size: 25px;
         font-weight: 500;
+        margin-top: 16px;
         color: var(--error);
     }
 
     input {
-        display: block;
         width: 100%;
         height: 46px;
+        display: block;
         margin-bottom: 7px;
+        font-size: 20px;
         padding: 0 10px;
 
         outline: none;
         border: 1px solid var(--input--placeholder);
         border-radius: 5px;
-
-        font-size: 20px;
     }
     
     input.loading {
@@ -140,10 +136,10 @@ const Logar = styled.div`
     }
 ` 
 const StyledLink = styled(Link)`
-    color: var(--theme--color);
-    margin: 24px 0;
     font-size: 15px;
     text-decoration: none;
+    color: var(--theme--color);
+    margin: 24px 0;
 
     &:hover {
         text-decoration: underline;
@@ -151,7 +147,7 @@ const StyledLink = styled(Link)`
 `
 
 const Title = styled.div`
-    font-family: 'Playball', cursive;
     font-size: 69px;
+    font-family: 'Playball', cursive;
     color: var(--theme--color--dark);
 `

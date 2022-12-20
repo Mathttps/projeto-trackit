@@ -200,13 +200,11 @@ const HabitCont = styled.div`
 `
 
 const Divo = styled.div`
-    width: 100%;
-    margin-bottom: 20px;
-
-
     display: flex;
     justify-content: space-between;
     align-items: center;
+    width: 100%;
+    margin-bottom: 20px;
 
     p {
         font-size: 23px;
@@ -214,14 +212,12 @@ const Divo = styled.div`
     }
 
     button {
-        width: 40px;
-        height: 35px;
-        cursor: pointer;
-
         display: flex;
         align-items: center;
         justify-content: center;
-
+        width: 40px;
+        height: 35px;
+        cursor: pointer;
         border: none;
         border-radius: 5px;
         background-color: var(--theme--color);
@@ -235,21 +231,20 @@ const Divo = styled.div`
 `
 
 const CriarHabito = styled.div`
-    position: relative;
     width: 100%;
     height: 180px;
     margin-bottom: 20px;
+    position: relative;
 
     border-radius: 5px;
     background-color: #FFFFFF;
 
     input {
-        display: block;
         width: 90%;
         height: 45px;
         margin: 20px auto 8px;
         padding: 0 11px;
-
+        display: block;
         outline: none;
         border: 1px solid var(--input--placeholder);
         border-radius: 5px;
@@ -273,11 +268,10 @@ const CriarHabito = styled.div`
             width: 30px;
             height: 30px;
             margin-right: 4px;
-
-            font-size: 20px;
             color: var(--input--placeholder);
             transition: all 0.5s;
             cursor: pointer;
+            font-size: 20px;
 
             border-radius: 5px;
             border: 1px solid var(--input--placeholder);
@@ -291,13 +285,12 @@ const CriarHabito = styled.div`
     }
 
     .FinishHabit {
+        display: flex;
+        align-items: center;
         position: absolute;
         bottom: 16px;
         right: 16px;
-
-        display: flex;
-        align-items: center;
-
+        
         * {
             font-size: 16px;
         }
@@ -311,13 +304,12 @@ const CriarHabito = styled.div`
         }
 
         button {
-            width: 84px;
-            height: 35px;
-
             display: flex;
             align-items: center;
             justify-content: center;
             transition: all 0.5s;
+            width: 84px;
+            height: 35px;
 
             color: #FFFFFF;
             border: none;
@@ -331,20 +323,21 @@ const CriarHabito = styled.div`
 `
 
 const Habit = styled.article`
-    position: relative;
     width: 100%;
     height: 91px;
     margin-bottom: 20px;
     padding: 0 15px;
+    position: relative;
 
     border-radius: 5px;
     background-color: #FFFFFF;
 
     ion-icon {
-        position: absolute;
         top: 10px;
         right: 10px;
         cursor: pointer;
+        position: absolute;
+      
     }
 
     * {
@@ -352,21 +345,19 @@ const Habit = styled.article`
     }
 
     p {
+        margin: 13px 0;
+        color: #666666;
         max-width: 85%;
         max-height: 20px;
         overflow: hidden;
-        
-        margin: 13px 0;
-        color: #666666;
     }
 
     button {
         width: 30px;
         height: 30px;
-        margin-right: 4px;
-
         font-size: 20px;
         color: var(--input--placeholder);
+        margin-right: 4px;
 
         border-radius: 5px;
         border: 1px solid var(--input--placeholder);
@@ -380,6 +371,6 @@ const Habit = styled.article`
 `
 
 const Text = styled.p`
-    font-size: 18px;
     color: #666666;
+    font-size: 18px;
 `

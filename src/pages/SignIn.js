@@ -71,15 +71,15 @@ export default function SignIn() {
 
 
 const Cadastro = styled.div`
+    height: 100%;
+    width: 100%;
+    background-color: #FFFFFF;
     display: flex;
     flex-direction: column;
     align-items: center;
 
     overflow-y: auto;
     position: absolute;
-    height: 100%;
-    width: 100%;
-    background-color: #FFFFFF;
 
     img {
         width: 155px;
@@ -93,17 +93,16 @@ const Cadastro = styled.div`
     }
 
     form {
-        width: 79%;
         margin-top: 29px;
+        width: 79%;
     }
 
     button {
+        width: 100%;
+        height: 46px;
         display: flex;
         align-items: center;
         justify-content: center;
-        width: 100%;
-        height: 46px;
-
         border: none;
         border-radius: 5px;
         background-color: var(--theme--color);

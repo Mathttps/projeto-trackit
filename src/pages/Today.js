@@ -108,8 +108,8 @@ export default function Today() {
 
 
 const ContainerHab = styled.div`
-    width: 90%;
     margin: 98px auto 115px;
+    width: 90%;
 
     h1 {
         font-size: 23px;
@@ -126,12 +126,12 @@ const ContainerHab = styled.div`
     }
 `
 const SequenciaHab = styled.article`
-    position: relative;
     width: 100%;
     height: 94px;
 
     margin-bottom: 10px;
     padding: 13px 15px;
+    position: relative;
 
     border-radius: 5px;
     background-color: #FFFFFF;
@@ -141,12 +141,11 @@ const SequenciaHab = styled.article`
     }
 
     h3 {
+        margin-bottom: 11px;
+        font-size: 21px;
         max-width: 71%;
         max-height: 21px;
         overflow: hidden;
-
-        margin-bottom: 11px;
-        font-size: 21px;
     }
 
     p {
@@ -158,13 +157,13 @@ const SequenciaHab = styled.article`
     }
 
     button {
-        position: absolute;
-        top: 13px;
-        right: 13px;
-        
         width: 69px;
         height: 69px;
         cursor: pointer;
+        position: absolute;
+        top: 13px;
+        right: 13px;
+
         transition: all 0.5s;
 
         border: 1px solid #E7E7E7;
