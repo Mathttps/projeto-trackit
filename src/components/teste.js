@@ -10,6 +10,7 @@ export default function Header() {
     return (pathname !== '/' && pathname !== '/cadastro')  ? (
         <Head data-test="header">
             <h1>TrackIt</h1>
+
             <img src={user.image} alt='Profile' />
         </Head>
     ) : (
@@ -45,3 +46,20 @@ const Head = styled.header`
         border-radius: 50%;
     }
 `
+
+// function selecionado(day) {
+//     if (days.includes(day.id)) {
+//         day.status = true;
+//         const newDays = days.filter(value => value !== day.id); 
+//         setDays(newDays);
+//     } else {
+//         day.status = false;
+//         setDays([...days, day.id]);
+//     }
+// }
+
+// function resetForm() {
+//     setName("");
+//     setDays("");
+//     setDayselecionado(weekdays);
+// }

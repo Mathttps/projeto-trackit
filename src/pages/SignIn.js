@@ -6,8 +6,11 @@ import { ThreeDots } from  'react-loader-spinner'
 import axios from 'axios'
 
 export default function SignIn() {
+
+    let animacao = <ThreeDots color="#FFFFFF" height={46} width={59} />
+
     const navigate = useNavigate()
-    const [loading, setLoading] = useState(false) 
+    const [loading, setCarregando] = useState(false) 
     const [valid, setValid] = useState(true) 
     const inputs = [
         {type: 'email', placeholder: 'email', test: 'email-input'}, 
@@ -16,25 +19,25 @@ export default function SignIn() {
         {type: 'url', placeholder: 'foto', test: 'user-image-input'}
     ] 
 
-    function enviarDados(event) {
-        event.preventDefault()
-        setLoading(true)
+    function enviarDados(evento) {
+        evento.preventDefault()
+        setCarregando(true)
         
         const promise = axios.post('https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/auth/sign-up', {
-            email: event.target[0].value,
-            password: event.target[1].value,
-            name: event.target[2].value,
-            image: event.target[3].value
+            email: evento.target[0].value,
+            password: evento.target[1].value,
+            name: evento.target[2].value,
+            image: evento.target[3].value
         })
         promise.then(response => navigate('/'))   
         promise.catch(error => {
             console.log(error.response)
-            setLoading(false)
+            setCarregando(false)
             setValid(false)
         })     
     }
 
-    let animacao = <ThreeDots color="#FFFFFF" height={46} width={59} />
+   
     return (
         <Cadastro>
             <img src={Logo} alt='Logo' />

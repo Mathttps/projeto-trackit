@@ -7,40 +7,26 @@ import UserContext from "../contexts/UserContext"
 
 export default function Habits() {
     const {user, getTodayHabits} = useContext(UserContext)
+    const dayNames = ['D', 'S', 'T', 'Q', 'Q', 'S', 'S'] 
+    const config = {Authorization: `Bearer ${user.token}`}
 
-    const [days, setDays] = useState([]) // array of selected days
-    const [name, setName] = useState('') // name of the new habit
-    const [add, setAdd] = useState(false) // show "Add Habit" section 
-    const [allHabits, setAllHabits] = useState([]) // get all habits from API
-    const [refreshAxios, setRefreshAxios] = useState(false) // refresh axios.get when a new habit is added
-    
-    const dayNames = ['D', 'S', 'T', 'Q', 'Q', 'S', 'S'] // day buttons
-    const config = {Authorization: `Bearer ${user.token}`} // Authorization for axios
+    const [todosHabitos, setTodosHabitos] = useState([]) 
+    const [refreshAxios, setRefreshAxios] = useState(false) 
+    const [days, setDays] = useState([]) 
+    const [name, setName] = useState('') 
+    const [add, setAdd] = useState(false) 
+     
 
     useEffect(getTodayHabits, [])
 
     useEffect(() => {
         const promise = axios.get('https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits',
         {headers: config})
-        promise.then(response => setAllHabits(response.data))
+        promise.then(response => setTodosHabitos(response.data))
         promise.catch(error => console.log(error.response))
     }, [refreshAxios])
 
-    function ShowHabits({id, name, days}) {
-        return (
-            <Habit data-test="habit-container">
-                <ion-icon data-test="habit-delete-btn" name="trash-outline" onClick={() => deleteHabit(id)}></ion-icon>
-                <p data-test="habit-name">{name}</p>
-                <div className='Days'>
-                    {dayNames.map((day, i) => 
-                        <button data-test="habit-day"   key={`${day} - ${i}`} className={days.includes(i) ? 'selected' : ''}>{day}</button>
-                    )}   
-                </div>
-            </Habit>
-        )
-    }
-
-    function deleteHabit(id) {
+    function deletarHabito(id) {
         let confirmation = window.confirm('Tem certeza que deseja deletar esse hábito?')
         if (confirmation) {
             const promise = axios.delete(`https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/${id}`,
@@ -53,12 +39,27 @@ export default function Habits() {
         }
     }
 
+    function MostrarHabitos({id, name, days}) {
+        return (
+            <Habit data-test="habit-container">
+                <ion-icon data-test="habit-delete-btn" name="trash-outline" onClick={() => deletarHabito(id)}></ion-icon>
+                <p data-test="habit-name">{name}</p>
+                <div className='Days'>
+                    {dayNames.map((day, i) => 
+                        <button data-test="habit-day"   key={`${day} - ${i}`} className={days.includes(i) ? 'selected' : ''}>{day}</button>
+                    )}   
+                </div>
+            </Habit>
+        )
+    }
+
+
     return (
-        <Main>
-            <Wrapper>
+        <HabitCont>
+            <Divo>
                 <p>Meus hábitos</p>
                 <button data-test="habit-create-btn" onClick={() => setAdd(true)}><ion-icon name="add-outline"></ion-icon></button>
-            </Wrapper>
+            </Divo>
 
             {add ? 
             <Add dayNames={dayNames} setAdd={setAdd} token={user.token} getTodayHabits={getTodayHabits}
@@ -66,33 +67,50 @@ export default function Habits() {
             refreshAxios={refreshAxios} setRefreshAxios={setRefreshAxios} /> : 
             <></>}
 
-            {allHabits.map( ({id, name, days}) => {return(
-                <ShowHabits  key={id} id={id} name={name} days={days} />
+            {todosHabitos.map( ({id, name, days}) => {return(
+                <MostrarHabitos  key={id} id={id} name={name} days={days} />
             )})}
 
-            {allHabits.length === 0 ? 
+            {todosHabitos.length === 0 ? 
             <Text>Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!</Text> : 
             <></>}
-        </Main>
+        </HabitCont>
     )
 }
 
 function Add(props) {
     const {days, setDays, name, setName, dayNames, setAdd, token, refreshAxios, setRefreshAxios, getTodayHabits} = props
 
-    const [notValid, setNotValid] = useState(true) // validate 'days' and 'name'
-    const [loading, setLoading] = useState(false) // loading API
+    const [invalido, setInvalido] = useState(true) 
+    const [loading, setLoading] = useState(false) 
 
-    function validateObj() {
+    function validarDia() {
         if (days.length > 0 && name.length > 2) {
-            setNotValid(false)
+            setInvalido(false)
         } else {
-            setNotValid(true)
+            setInvalido(true)
         }
     }
-    useEffect(validateObj, [days, name])
+    useEffect(validarDia, [days, name])
 
-    function attDays(index) {
+    // function selecionado(day) {
+//     if (days.includes(day.id)) {
+//         day.status = true;
+//         const newDays = days.filter(value => value !== day.id); 
+//         setDays(newDays);
+//     } else {
+//         day.status = false;
+//         setDays([...days, day.id]);
+//     }
+// }
+
+// function resetForm() {
+//     setName("");
+//     setDays("");
+//     setDayselecionado(weekdays);
+// }
+
+    function atualizarDias(index) {
         if (days.includes(index)) {
             const i = days.indexOf(index)
             days.splice(i, 1)
@@ -102,7 +120,7 @@ function Add(props) {
         }
     }
 
-    function addHabit(e) {
+    function adicionarHabito(e) {
         e.preventDefault()
         setLoading(true)
 
@@ -129,7 +147,7 @@ function Add(props) {
     let loadingAnimation = <ThreeDots color="#FFFFFF" height={35} width={45} />
     return (
         <CriarHabito data-test="habit-create-container">
-            <form onSubmit={e => addHabit(e)}>
+            <form onSubmit={e => adicionarHabito(e)}>
                 <input 
                     data-test="habit-name-input"
                     type='text' 
@@ -149,7 +167,7 @@ function Add(props) {
                             className={days.includes(i) ? 'selected' : ''}
                             disabled={loading ? true : false}
                             style={loading ? {cursor: 'auto'} : {cursor: 'pointer'}}
-                            onClick={() => attDays(i)}
+                            onClick={() => atualizarDias(i)}
                         >{day}</button>
                     )}   
                 </div>
@@ -161,9 +179,9 @@ function Add(props) {
                     >Cancelar</p>
                     <button data-test="habit-create-save-btn"
                         type="submit" 
-                        className={(notValid || loading) ? 'loading' : ''}
-                        disabled={(notValid || loading) ? true : false}
-                        style={(notValid || loading) ? {cursor: 'auto'} : {cursor: 'pointer'}}
+                        className={(invalido || loading) ? 'loading' : ''}
+                        disabled={(invalido || loading) ? true : false}
+                        style={(invalido || loading) ? {cursor: 'auto'} : {cursor: 'pointer'}}
                     >{loading ? loadingAnimation : 'Salvar'}</button>
                 </div>
             </form>
@@ -172,8 +190,7 @@ function Add(props) {
 }
 
 
-// STYLED COMPONENTS
-const Main = styled.main`
+const HabitCont = styled.div`
     width: 90%;
     margin: 92px auto 100px;
 
@@ -182,7 +199,7 @@ const Main = styled.main`
     align-items: center;
 `
 
-const Wrapper = styled.div`
+const Divo = styled.div`
     width: 100%;
     margin-bottom: 20px;
 

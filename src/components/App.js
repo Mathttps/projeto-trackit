@@ -12,6 +12,7 @@ import History from '../pages/History'
 import Menu from './Menu'
 
 import UserContext from './../contexts/UserContext'
+// import GlobalStyle from "../assets/CSS/GlobalStyle"
 
 export default function App() {
 
