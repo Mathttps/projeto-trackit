@@ -62,7 +62,7 @@ export default function Login() {
                     style={loading ? {cursor: 'auto'} : {cursor: 'pointer'}}
                 >{loading ? loadingAnimation : 'Entrar'}</button>
             </form>
-            {valid ? <></> : <p>Falha no login...</p>}
+            {valid ? <></> : <>{alert("Falha no login...")}</>}
             <StyledLink data-test="signup-link" to={'/cadastro'}>
                 Não tem uma conta? Cadastre-se!
             </StyledLink>   

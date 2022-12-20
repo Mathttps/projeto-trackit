@@ -61,7 +61,7 @@ export default function SignIn() {
                     style={loading ? {cursor: 'auto'} : {cursor: 'pointer'}}
                 >{loading ? animacao : 'Cadastrar'}</button >
             </form>
-            {valid ? <></> : <p>Falha para logar...</p>}
+            {valid ? <></> : <>{alert("Erro, tente novamente...")}</>}
             <StyledLink data-test="login-link" to={'/'}>
                 Já tem uma conta? Faça login
             </StyledLink>
