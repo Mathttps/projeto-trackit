@@ -1,0 +1,19 @@
+* {
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+    
+    --theme--color: #52B6FF;
+    --theme--color--dark: #126BA5;
+    --error: #FB6B6B;
+    --input--placeholder: #DBDBDB;
+    --input--loading: #F2F2F2;
+    --habit--pending: #BABABA;
+    --habit--concluded: #8FC549;
+    --concluded: #8CC654;
+    --not--concluded: #EA5766;
+}
+
+body {
+    background-color: #E5E5E5;
+    font-family: 'Lexend Deca', sans-serif;
+}
